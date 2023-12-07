@@ -1,29 +1,34 @@
 #include "graph.h"
 
-// Constructor
 Graph::Graph(int vertices) : vertices(vertices) {
-    adjList = new std::list<int>[vertices];
+    adjList = new list<int>[vertices];
 }
 
-// Destructor
 Graph::~Graph() {
     delete[] adjList;
 }
 
-// Copy constructor
+/*
+You could declare/implement a class that can be instantiated into a linked list. 
+Class singlyList{
+	Private:
+        Node* head; //
+};
+std::vector<singlyList> adjacencyLists; 
+*/
+
 Graph::Graph(const Graph& other) : vertices(other.vertices) {
-    adjList = new std::list<int>[vertices];
+    adjList = new list<int>[vertices];
     for (int i = 0; i < vertices; ++i) {
         adjList[i] = other.adjList[i];
     }
 }
 
-// Copy assignment operator
 Graph& Graph::operator=(const Graph& other) {
     if (this != &other) {
         delete[] adjList;
         vertices = other.vertices;
-        adjList = new std::list<int>[vertices];
+        adjList = new list<int>[vertices];
         for (int i = 0; i < vertices; ++i) {
             adjList[i] = other.adjList[i];
         }
@@ -31,22 +36,31 @@ Graph& Graph::operator=(const Graph& other) {
     return *this;
 }
 
-// Function to add an edge to the graph
+// add an edge to the graph
 void Graph::addEdge(int v, int w) {
     adjList[v].push_back(w);
 }
 
-// Breadth First Search (BFS) algorithm
-void Graph::BFS(int startVertex) {
-    std::vector<bool> visited(vertices, false);
-    std::queue<int> queue;
+// add an edge to the graph
+void Graph::addVertex(int v, int w) {
+    //adjList[v].push_back(w);
+}
+
+// BFS algorithm
+// each node: pi, d  (Node 1: null, 0; Node 2: 1, 1; Node 4: 3, 2)
+// pi: the parent of a node in the resulting BFS tree;  NIL:  null
+// input data: G=<V, E>, source node
+string Graph::BFS(int startVertex) {
+    vector<bool> visited(vertices);
+    queue<int> queue;
+    string output;
 
     visited[startVertex] = true;
     queue.push(startVertex);
 
     while (!queue.empty()) {
         int currentVertex = queue.front();
-        std::cout << currentVertex << " ";
+        output += to_string(queue.front()) + " ";
         queue.pop();
 
         for (const auto& neighbor : adjList[currentVertex]) {
@@ -56,19 +70,21 @@ void Graph::BFS(int startVertex) {
             }
         }
     }
+
+    output.pop_back();
+    return output;
 }
 
-// Function to print the shortest path from source to destination
-void Graph::printShortestPath(int source, int destination) {
-    // Implementation of shortest path algorithm (e.g., Dijkstra's or BFS)
-    // ...
-
-    // Print the shortest path
-    // ...
+// print the shortest path from source to destination
+string Graph::printShortestPath(int source, int destination) {
+    //1-->2
+    //    2-->5
+    //        5-->6
+    //1-->3
+    //    3-->4
 }
 
-// Recursive algorithm (Slide 10)
+// recursive algorithm
 void Graph::recursiveAlgorithm(int vertex) {
-    // Implementation of the recursive algorithm
-    // ...
+
 }

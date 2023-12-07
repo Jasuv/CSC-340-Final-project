@@ -10,9 +10,7 @@ inline bool testBasicGraphAndBFS() {
     g.addEdge(1, 3);
     g.addEdge(2, 4);
 
-    // Add your assertion logic here
-    // For simplicity, let's assume the test passes if the BFS output matches the expected result
-    std::string expectedOutput = "0 1 2 3 4 ";
+    string expectedOutput = "0 1 2 3 4";
     return g.BFS(0) == expectedOutput;
 }
 
@@ -23,9 +21,7 @@ inline bool testGraphWithCycle() {
     g.addEdge(2, 3);
     g.addEdge(3, 0);
 
-    // Add your assertion logic here
-    // For simplicity, let's assume the test passes if the BFS output matches the expected result
-    string expectedOutput = "0 1 2 3 ";
+    string expectedOutput = "0 1 2 3";
     return g.BFS(0) == expectedOutput;
 }
 
@@ -38,9 +34,7 @@ inline bool testShortestPathCalculation() {
     g.addEdge(3, 5);
     g.addEdge(4, 5);
 
-    // Add your assertion logic here
-    // For simplicity, let's assume the test passes if the shortest path matches the expected result
-    std::string expectedOutput = "0 2 4 5 ";
+    string expectedOutput = "0 2 4 5";
     return g.printShortestPath(0, 5) == expectedOutput;
 }
 

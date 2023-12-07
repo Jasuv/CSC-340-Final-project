@@ -5,37 +5,30 @@
 #include <queue>
 #include <list>
 #include <vector>
+#include <string>
 
 using namespace std;
 
 class Graph {
 private:
     int vertices; // Number of vertices in the graph
-    std::list<int>* adjList; // Adjacency list representation using pointers
+    list<int>* adjList; // Adjacency list representation using pointers
 
 public:
-    // Constructor
     Graph(int vertices);
-
-    // Destructor
     ~Graph();
-
-    // Copy constructor
     Graph(const Graph& other);
-
-    // Copy assignment operator
     Graph& operator=(const Graph& other);
 
-    // Function to add an edge to the graph
+    // add an edge to the graph
     void addEdge(int v, int w);
-
-    // Breadth First Search (BFS) algorithm
-    void BFS(int startVertex);
-
-    // Function to print the shortest path from source to destination
-    void printShortestPath(int source, int destination);
-
-    // Recursive algorithm (Slide 10)
+    // add an edge to the graph
+    void addVertex(int v, int w);
+    // BFS algorithm
+    string BFS(int startVertex);
+    // print the shortest path from source to destination
+    string printShortestPath(int s, int v);
+    // recursive algorithm
     void recursiveAlgorithm(int vertex);
 };
 
