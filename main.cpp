@@ -3,12 +3,46 @@
 
 int main() {
 
-    int start = 0;
-    int end = 5;
+    cout << testAddEdge << endl;
+    cout << testAddVertex << endl;
+    cout << testBFS << endl;
+    cout << testPrintShortestPath << endl;
 
-    cout << "testing basic graph creation and BFS starting from vertex 0: " << (testBasicGraphAndBFS() ? " Success!!!" : " Failed...") << endl;
-    cout << "testing graph with a cycle - BFS starting from vertex 0: " << (testGraphWithCycle() ? " Success!!!" : " Failed...") << endl;
-    cout << "testing shortest path from " << to_string(start) << " to " << to_string(end) << (testShortestPathCalculation() ? " Success!!!" : " Failed...") << endl;
+    string input;
+    string input2;
+    int i;
+    
+    // enter number of vertices
+    cout << "Enter number of vertices(nodes): ";
+    getline(cin, input);
+    Graph G;
+    for (i = 0; i < stoi(input); ++i) {
+        G.addVertex();
+    }
+
+    // enter edges
+    cout << "Enter an edge (type 'stop' to exit): " << endl;
+    while (true) {
+        getline(cin, input);
+        if (input == "stop") break;
+        cout << input << " to ? ";
+        getline(cin, input2);
+        G.addEdge(stoi(input), stoi(input2));
+        cout << "adding edge " << input << " to " << input2 << endl;
+    }
+
+    // enter start node
+    cout << "Enter a VALID starting node: " << endl;
+    getline(cin, input);
+    G.BFS(stoi(input));
+
+    // enter start and end node for path
+    cout << "Enter a VALID starting node:" << endl;
+    getline(cin, input);
+    cout << "Enter a VALID ending node:" << endl;
+    getline(cin, input2);
+
+    cout << G.printShortestPath(stoi(input), stoi(input2));
 
     return 0;
 }

@@ -2,34 +2,35 @@
 #define GRAPH_H
 
 #include <iostream>
-#include <queue>
 #include <list>
-#include <vector>
+#include <queue>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Graph {
-private:
-    int vertices; // Number of vertices in the graph
-    list<int>* adjList; // Adjacency list representation using pointers
-
 public:
-    Graph(int vertices);
+    struct Node {
+        int value;        // value of the node
+        string color;     // tracks the state of the node
+        Node* pi;         // parent node
+        int d;            // distance from source node
+        vector<Node*> edges; // Adjacent nodes
+    };
+    Graph();
     ~Graph();
-    Graph(const Graph& other);
-    Graph& operator=(const Graph& other);
+    Graph(const Graph &other);
+    Graph &operator=(const Graph &other);
+    const vector<Node>& getNodes() const;
+    void addEdge(int v, int w);             // add an edge to the graph
+    void addVertex();                       // add an vertex to the graph
+    void BFS(int s);                      // BFS algorithm
+    string printShortestPath(int s, int v); // print the shortest path from source to destination
+    void recursiveAlgorithm(int vertex);    // recursive algorithm
 
-    // add an edge to the graph
-    void addEdge(int v, int w);
-    // add an edge to the graph
-    void addVertex(int v, int w);
-    // BFS algorithm
-    string BFS(int startVertex);
-    // print the shortest path from source to destination
-    string printShortestPath(int s, int v);
-    // recursive algorithm
-    void recursiveAlgorithm(int vertex);
+private:
+    vector<Node> nodes; // store nodes of the graph
 };
 
 #endif
